@@ -1,0 +1,44 @@
+TagLib: Could not open file /home/sean/music/Main Library/Batman Arkham Asylum [Original Soundtrack]/1 - 68. Penitentiary Guard Rescue.flac
+TagLib: MPEG::File::save() -- File is read only.
+TagLib: MPEG::File::save() -- File is read only.
+TagLib: MPEG::File::save() -- File is read only.
+TagLib: MPEG::File::save() -- File is read only.
+TagLib: FLAC::File::save() - Cannot save to a read only file.
+TagLib: FLAC::File::save() - Cannot save to a read only file.
+TagLib: Could not open file /home/sean/music/Main Library/Aladdin OST - 1992/Aladdin Soundtrack.cue/track0001
+TagLib: MPEG::File::save() -- File is read only.
+TagLib: FLAC::File::save() - Cannot save to a read only file.
+TagLib: FLAC::File::save() - Cannot save to a read only file.
+TagLib: Could not open file /home/sean/music/Other Music/62.Materia Collective - Darby Cupit - Temcappella.mp3
+TagLib: Could not open file /home/sean/music/Other Music/62.Materia Collective - Darby Cupit - Temcappella.mp3
+TagLib: Could not open file /home/sean/music/Other Music/Music Files/Africa.mp3
+TagLib: Could not open file /home/sean/music/Other Music/62.Materia Collective - Darby Cupit - Temcappella.mp3
+TagLib: Could not open file /home/sean/music/Main Library/Other Folders/Other 9/'This is the choice of STEINS;GATE...' ‖ Hacking to the Gate ‖ ENGLISH ver..opus
+TagLib: Could not open file /home/sean/music/Main Library/Other Folders/Other 9/'This is the choice of STEINS;GATE...' ‖ Hacking to the Gate ‖ ENGLISH ver..opus
+TagLib: Could not open file /home/sean/music/Main Library/Other Folders/Other 9/'This is the choice of STEINS;GATE...' ‖ Hacking to the Gate ‖ ENGLISH ver..opus
+TagLib: Could not open file /home/sean/music/Main Library/Mulan (Deluxe Edition)/1 - 04. Honour To Us All.mp3
+TagLib: Could not open file /home/sean/music/Main Library/Mulan (Deluxe Edition)/1 - 04. Honour To Us All.mp3
+TagLib: Could not open file /home/sean/music/Other Music/SU temp/ＢＥＣＯＭＩＮＧ　ＨＵＭＡＮ _ FULL ALBUM _ Steven Universe REMIX _ 2020 ✔-dDRRueSu4SQ.opus
+TagLib: Could not open file /home/sean/music/Other Music/SU temp/ＢＥＣＯＭＩＮＧ　ＨＵＭＡＮ _ FULL ALBUM _ Steven Universe REMIX _ 2020 ✔-dDRRueSu4SQ.opus
+writeCommonTags: couldn't write 'year' tag to 'Other Music/SU temp/ＢＥＣＯＭＩＮＧ　ＨＵＭＡＮ _ FULL ALBUM _ Steven Universe REMIX _ 2020 ✔-dDRRueSu4SQ.opus' as it's not a positive integer
+writeCommonTags: couldn't write 'track' tag to 'Other Music/SU temp/ＢＥＣＯＭＩＮＧ　ＨＵＭＡＮ _ FULL ALBUM _ Steven Universe REMIX _ 2020 ✔-dDRRueSu4SQ.opus' as it's not a positive integer
+writeCommonTags: couldn't write 'year' tag to 'Other Music/SU temp/ＢＥＣＯＭＩＮＧ　ＨＵＭＡＮ _ FULL ALBUM _ Steven Universe REMIX _ 2020 ✔-dDRRueSu4SQ.opus' as it's not a positive integer
+writeCommonTags: couldn't write 'track' tag to 'Other Music/SU temp/ＢＥＣＯＭＩＮＧ　ＨＵＭＡＮ _ FULL ALBUM _ Steven Universe REMIX _ 2020 ✔-dDRRueSu4SQ.opus' as it's not a positive integer
+writeCommonTags: couldn't write 'year' tag to 'Other Music/SU temp/ＢＥＣＯＭＩＮＧ　ＨＵＭＡＮ _ FULL ALBUM _ Steven Universe REMIX _ 2020 ✔-dDRRueSu4SQ.opus' as it's not a positive integer
+writeCommonTags: couldn't write 'track' tag to 'Other Music/SU temp/ＢＥＣＯＭＩＮＧ　ＨＵＭＡＮ _ FULL ALBUM _ Steven Universe REMIX _ 2020 ✔-dDRRueSu4SQ.opus' as it's not a positive integer
+writeCommonTags: couldn't write 'year' tag to 'Other Music/SU temp/ＢＥＣＯＭＩＮＧ　ＨＵＭＡＮ _ FULL ALBUM _ Steven Universe REMIX _ 2020 ✔-dDRRueSu4SQ.opus' as it's not a positive integer
+writeCommonTags: couldn't write 'track' tag to 'Other Music/SU temp/ＢＥＣＯＭＩＮＧ　ＨＵＭＡＮ _ FULL ALBUM _ Steven Universe REMIX _ 2020 ✔-dDRRueSu4SQ.opus' as it's not a positive integer
+writeCommonTags: couldn't write 'year' tag to 'Other Music/SU temp/ＢＥＣＯＭＩＮＧ　ＨＵＭＡＮ _ FULL ALBUM _ Steven Universe REMIX _ 2020 ✔-dDRRueSu4SQ.opus' as it's not a positive integer
+writeCommonTags: couldn't write 'track' tag to 'Other Music/SU temp/ＢＥＣＯＭＩＮＧ　ＨＵＭＡＮ _ FULL ALBUM _ Steven Universe REMIX _ 2020 ✔-dDRRueSu4SQ.opus' as it's not a positive integer
+writeCommonTags: couldn't write 'year' tag to 'Other Music/SU temp/ＢＥＣＯＭＩＮＧ　ＨＵＭＡＮ _ FULL ALBUM _ Steven Universe REMIX _ 2020 ✔-dDRRueSu4SQ.opus' as it's not a positive integer
+writeCommonTags: couldn't write 'track' tag to 'Other Music/SU temp/ＢＥＣＯＭＩＮＧ　ＨＵＭＡＮ _ FULL ALBUM _ Steven Universe REMIX _ 2020 ✔-dDRRueSu4SQ.opus' as it's not a positive integer
+writeCommonTags: couldn't write 'year' tag to 'Other Music/SU temp/ＢＥＣＯＭＩＮＧ　ＨＵＭＡＮ _ FULL ALBUM _ Steven Universe REMIX _ 2020 ✔-dDRRueSu4SQ.opus' as it's not a positive integer
+writeCommonTags: couldn't write 'track' tag to 'Other Music/SU temp/ＢＥＣＯＭＩＮＧ　ＨＵＭＡＮ _ FULL ALBUM _ Steven Universe REMIX _ 2020 ✔-dDRRueSu4SQ.opus' as it's not a positive integer
+writeCommonTags: couldn't write 'year' tag to 'Other Music/SU temp/ＢＥＣＯＭＩＮＧ　ＨＵＭＡＮ _ FULL ALBUM _ Steven Universe REMIX _ 2020 ✔-dDRRueSu4SQ.opus' as it's not a positive integer
+writeCommonTags: couldn't write 'track' tag to 'Other Music/SU temp/ＢＥＣＯＭＩＮＧ　ＨＵＭＡＮ _ FULL ALBUM _ Steven Universe REMIX _ 2020 ✔-dDRRueSu4SQ.opus' as it's not a positive integer
+writeCommonTags: couldn't write 'year' tag to 'Other Music/SU temp/ＢＥＣＯＭＩＮＧ　ＨＵＭＡＮ _ FULL ALBUM _ Steven Universe REMIX _ 2020 ✔-dDRRueSu4SQ.opus' as it's not a positive integer
+writeCommonTags: couldn't write 'track' tag to 'Other Music/SU temp/ＢＥＣＯＭＩＮＧ　ＨＵＭＡＮ _ FULL ALBUM _ Steven Universe REMIX _ 2020 ✔-dDRRueSu4SQ.opus' as it's not a positive integer
+writeCommonTags: couldn't write 'year' tag to 'Other Music/SU temp/ＢＥＣＯＭＩＮＧ　ＨＵＭＡＮ _ FULL ALBUM _ Steven Universe REMIX _ 2020 ✔-dDRRueSu4SQ.opus' as it's not a positive integer
+writeCommonTags: couldn't write 'track' tag to 'Other Music/SU temp/ＢＥＣＯＭＩＮＧ　ＨＵＭＡＮ _ FULL ALBUM _ Steven Universe REMIX _ 2020 ✔-dDRRueSu4SQ.opus' as it's not a positive integer
+writeCommonTags: couldn't write 'year' tag to 'Other Music/SU temp/ＢＥＣＯＭＩＮＧ　ＨＵＭＡＮ _ FULL ALBUM _ Steven Universe REMIX _ 2020 ✔-dDRRueSu4SQ.opus' as it's not a positive integer
+writeCommonTags: couldn't write 'track' tag to 'Other Music/SU temp/ＢＥＣＯＭＩＮＧ　ＨＵＭＡＮ _ FULL ALBUM _ Steven Universe REMIX _ 2020 ✔-dDRRueSu4SQ.opus' as it's not a positive integer
