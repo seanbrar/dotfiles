@@ -10,6 +10,7 @@ eval "`dircolors`"
 alias ls='exa -a --icons --color=auto --group-directories-first'
 alias lsf='exa -la --icons --color=auto --group-directories-first'
 alias rpcs3='QT_QPA_PLATFORM=xcb rpcs3'
+alias yuzu='QT_QPA_PLATFORM=xcb yuzu'
 alias ssh='kitty +kitten ssh' # Fix for SSH using kitty
 
 # Default
