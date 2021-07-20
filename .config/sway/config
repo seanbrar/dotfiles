@@ -254,8 +254,6 @@ include /etc/sway/config.d/*
     exec wl-paste -p --watch wl-copy
     bindsym $mod+y exec clipman pick --tool="wofi" --max-items=30
 
-    
-
 # Discord (Minimized)
     exec 'discord --start-minimized'
 
@@ -266,7 +264,6 @@ include /etc/sway/config.d/*
 #
 # Hide mouse after 100 [mili]seconds (lol) of inactivity (minimum is 100)
 #
-
     seat * hide_cursor 5000
 
 #
@@ -279,6 +276,5 @@ include /etc/sway/config.d/*
 #
 # Force floating
 #
-
     for_window [app_id="python3"] floating enable
     for_window [app_id="yad"] floating enable
