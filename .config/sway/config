@@ -240,28 +240,21 @@ include /etc/sway/config.d/*
     bindsym Ctrl+Shift+bracketright exec ~/.scripts/yt-video.sh
 
 #
-# Autostart Programs
-#
-
-# Blue-light filter
-    exec gammastep-indicator
-
-# Bluetooth Tray Icon
-    exec blueman-applet
-
 # Clipboard manager
+#
     set $clipboard "~/.local/share/clipman.json"
 #    exec wl-paste -p -t text --watch clipman store --max-items 1024 -P --histpath="~/.local/share/clipman.json"
     exec wl-paste -t text --watch clipman store -P
     exec wl-paste -p --watch wl-copy
     bindsym $mod+y exec clipman pick --tool="wofi" --max-items=30
 
-# Discord (Minimized)
+#
+# Autostart Programs
+#
+    exec gammastep-indicator
+    exec blueman-applet
     exec 'discord --start-minimized'
-
-# Steam (Minimized)
     exec 'steam -silent'
-
 
 #
 # Hide mouse after 100 [mili]seconds (lol) of inactivity (minimum is 100)
@@ -271,7 +264,6 @@ include /etc/sway/config.d/*
 #
 # Auto-change wallpaper
 #
-
 #    exec "cd ~/.scripts && ./bg-wall.sh"
     exec '~/.scripts/bg-wall.sh'
 
