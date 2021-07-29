@@ -255,6 +255,7 @@ include /etc/sway/config.d/*
     exec blueman-applet
     exec 'discord --start-minimized'
     exec 'steam -silent'
+    exec heroic
 
 #
 # Hide mouse after 100 [mili]seconds (lol) of inactivity (minimum is 100)
