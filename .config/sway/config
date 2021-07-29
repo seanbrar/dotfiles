@@ -236,8 +236,8 @@ include /etc/sway/config.d/*
     bindsym Mod1+space exec mpc toggle
     bindsym Ctrl+$mod+x exec $term ranger
     bindsym Ctrl+$mod+m exec $term ncmpcpp
-    bindsym Ctrl+$mod+bracketleft exec ~/Documents/.sh/yt-audio.sh
-    bindsym Ctrl+$mod+bracketright exec ~/Documents/.sh/yt-video.sh
+    bindsym Ctrl+Shift+bracketleft exec ~/.scripts/yt-audio.sh
+    bindsym Ctrl+Shift+bracketright exec ~/.scripts/yt-video.sh
 
 #
 # Autostart Programs
