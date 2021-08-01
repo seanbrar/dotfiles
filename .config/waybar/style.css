@@ -9,7 +9,8 @@
 }
 
 window#waybar {
-    background: transparent;
+/* Sets the window background to black at 20% opacity */
+    background: rgba(0,0,0,0.2);
     color: white;
 }
 
