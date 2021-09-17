@@ -275,3 +275,6 @@ include /etc/sway/config.d/*
     for_window [app_id="python3"] floating enable
     for_window [app_id="yad"] floating enable
     for_window [app_id="copyq"] floating enable
+    for_window [class="bethesdanetlauncher.exe"] floating enable
+    for_window [class="battle.net.exe"] floating enable
+    for_window [class="hearthstone.exe"] floating enable
