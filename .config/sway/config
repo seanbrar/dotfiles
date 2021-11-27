@@ -258,6 +258,7 @@ include /etc/sway/config.d/*
     exec 'steam -silent'
     exec heroic
     exec 'copyq'
+    exec dunst
 
 #
 # Hide mouse after 100 [mili]seconds (lol) of inactivity (minimum is 100)
