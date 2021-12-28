@@ -281,3 +281,4 @@ include /etc/sway/config.d/*
     for_window [class="hearthstone.exe"] floating enable
 #    for_window [class="Minecraft *"] floating enable
 #    for_window [class="Minecraft Launcher"] floating enable
+    for_window [class="explorer.exe"] floating enable
