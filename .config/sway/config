@@ -263,7 +263,7 @@ include /etc/sway/config.d/*
 #
 # Hide mouse after 100 [mili]seconds (lol) of inactivity (minimum is 100)
 #
-    seat * hide_cursor 5000
+#    seat * hide_cursor 5000
 
 #
 # Auto-change wallpaper
@@ -282,6 +282,7 @@ include /etc/sway/config.d/*
 #    for_window [class="Minecraft *"] floating enable
 #    for_window [class="Minecraft Launcher"] floating enable
     for_window [class="explorer.exe"] floating enable
+    for_window [class="steam_app_386360"] floating enable # Smite
 
 #
 # Assign Workspaces
