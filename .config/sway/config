@@ -271,6 +271,12 @@ include /etc/sway/config.d/*
     exec '~/.scripts/bg-wall.sh'
 
 #
+# Set primary XDisplay in Wayland
+#
+
+    exec wayland-run-on-new-display '~/.scripts/set-correct-monitor 330+1920'
+
+#
 # Force floating
 #
     for_window [app_id="python3"] floating enable
