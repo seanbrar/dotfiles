@@ -1,0 +1,81 @@
+/* This program was created using this as a reference: https://jan.newmarch.name/Wayland/ProgrammingClient/
+ *
+ * wayland-run-on-new-display runs a command each time a new display is attached.
+ *
+ * Copyright (C) 2021 Robby Zambito 
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+#include <errno.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <wayland-client.h>
+
+#define STREQ(a, b) (strcmp(a, b) == 0)
+
+static char **command_argv;
+
+static void global_registry_handler(void *data, struct wl_registry *registry,
+                                    uint32_t id, const char *interface,
+                                    uint32_t version) {
+  /* A new display has been attached */
+  if (STREQ(interface, "wl_output")) {
+    errno = 0;
+    switch (fork()) {
+    case -1: /* Handle error */
+      perror("Unable to fork");
+      break;
+    case 0: /* In child */
+      execvp(command_argv[0], command_argv);
+      /* No need to break, the exec leaves the current program. */
+    default:;
+    }
+  }
+}
+
+static void global_registry_remover(void *data, struct wl_registry *registry,
+                                    uint32_t id) {
+  /* Do nothing. */
+}
+
+int main(int argc, char **argv) {
+  command_argv = argv + 1;
+
+  struct wl_display *display = wl_display_connect(NULL);
+
+  if (display == NULL) {
+    fputs("Failed to connect to the Wayland socket", stderr);
+    exit(EXIT_FAILURE);
+  }
+
+  const struct wl_registry_listener registry_listener = {
+      global_registry_handler,
+      global_registry_remover,
+  };
+
+  struct wl_registry *registry = wl_display_get_registry(display);
+
+  wl_registry_add_listener(registry, &registry_listener, NULL);
+
+  for (;;) {
+    wl_display_dispatch(display);
+    wl_display_roundtrip(display);
+  }
+
+  wl_display_disconnect(display);
+  return EXIT_SUCCESS;
+}
