@@ -3,7 +3,7 @@ if [ x"$XDG_CURRENT_DESKTOP" = x"Sway" ] ; then
 	QT_QPA_PLATFORMTHEME=qt5ct
 	export QT_QPA_PLATFORMTHEME
 	export EDITOR='nvim'
-	export BROWSER='brave'
+	export BROWSER='com.brave.Browser.desktop'
 	export TERMINAL='kitty'
 
 fi
