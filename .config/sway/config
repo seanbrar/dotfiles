@@ -257,7 +257,7 @@ include /etc/sway/config.d/*
     exec 'discord --start-minimized'
     exec 'steam -silent'
     exec heroic
-    exec 'copyq'
+#    exec 'copyq'
     exec dunst
 
 #
