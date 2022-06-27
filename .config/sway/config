@@ -254,9 +254,9 @@ include /etc/sway/config.d/*
 #
     exec gammastep-indicator
     exec blueman-applet
-    exec 'discord --start-minimized'
-    exec 'steam -silent'
-    exec heroic
+#    exec 'discord --start-minimized'
+#    exec 'steam -silent'
+#    exec heroic
 #    exec 'copyq'
     exec dunst
 
