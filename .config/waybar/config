@@ -6,9 +6,27 @@
     "height": 24, // Waybar height
     // "width": 1366, // Waybar width
     // Choose the order of the modules
-    "modules-left": ["sway/workspaces", "sway/mode", "custom/spotify"],
+    "modules-left": ["sway/workspaces", "sway/mode", "custom/separator", "custom/spotify"],
     "modules-center": ["sway/window"],
-    "modules-right": ["pulseaudio", "custom/weather", "cpu", "memory", "battery", "idle_inhibitor", "tray", "clock"],
+    "modules-right": [
+        "pulseaudio",
+        "custom/separator",
+        "custom/weather",
+        "custom/separator",
+        "cpu",
+        "custom/separator",
+        "memory",
+        "custom/separator",
+        "battery",
+        "custom/separator",
+        "idle_inhibitor",
+        "custom/separator",
+        "custom/updates",
+        "custom/separator",
+        "tray",
+        "custom/separator",
+        "clock"
+    ],
     "sway/workspaces": {
         "disable-scroll": true,
         "all-outputs": false,
@@ -33,7 +51,7 @@
         "spacing": 10
     },
     "clock": {
-        "format": "{:%I:%M %p  -  %a, %b %e }"
+        "format": "{:%I:%M %p | %a, %b %d}"
 //  Uncomment to include abriged day of the week
 //        "format-alt": "{:%a %m-%d-%Y}"
 //        "format-alt": "{:%m-%d-%Y}"
@@ -129,5 +147,18 @@
         "interval": 30, // Remove this if your script is endless and write in loop
         "exec": "$HOME/.config/waybar/mediaplayer.sh 2> /dev/null", // Script in resources folder
         "exec-if": "pgrep spotify"
+    },
+    "custom/updates": {
+        "format": "{} ",
+        "interval": 3600,
+        "exec": "checkupdates | wc -l",
+        "exec-if": "exit 0",
+        "on-click": "alacritty -e sudo pacman -Syu",
+        "signal": 8
+    },
+    "custom/separator": {
+        "format": "|",
+        "interval": "once",
+        "tooltip": false
     }
 }

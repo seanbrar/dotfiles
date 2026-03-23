@@ -1,0 +1,92 @@
+#!/bin/bash
+# groff-watch
+# Place this in ~/.local/bin/groff-watch
+
+# Check if inotifywait is installed
+if ! command -v inotifywait >/dev/null 2>&1; then
+    echo "Error: inotifywait not found. Install inotify-tools package."
+    exit 1
+fi
+
+# Check if a file argument was provided
+if [ -z "$1" ]; then
+    echo "Usage: groff-watch filename[.ms|.mom]"
+    echo "Example: groff-watch chapter1-review.ms"
+    exit 1
+fi
+
+# Get the file extension and base name
+FILENAME="$1"
+EXTENSION="${FILENAME##*.}"
+BASENAME="${FILENAME%.*}"
+OUTPUT="${BASENAME}.pdf"
+
+# Check if file exists
+if [ ! -f "$FILENAME" ]; then
+    echo "Error: File $FILENAME does not exist"
+    exit 1
+fi
+
+# Determine dependencies to watch
+WATCH_FILES=("$FILENAME")
+
+# Add format and macros if they exist in the current directory
+if [ -f "format" ]; then
+    WATCH_FILES+=("format")
+fi
+
+if [ -f "macros" ]; then
+    WATCH_FILES+=("macros")
+fi
+
+# Determine file type and compile accordingly
+if [ "$EXTENSION" = "ms" ]; then
+    echo "Watching and compiling $FILENAME as ms document..."
+    COMPILE_CMD="groff -ms $FILENAME -T pdf > $OUTPUT"
+elif [ "$EXTENSION" = "mom" ]; then
+    echo "Watching and compiling $FILENAME as mom document..."
+    COMPILE_CMD="groff -mom $FILENAME -T pdf > $OUTPUT"
+else
+    echo "Unsupported file extension: $EXTENSION"
+    echo "Supported extensions: ms, mom"
+    exit 1
+fi
+
+# Initial compilation
+eval "$COMPILE_CMD"
+echo "Created $OUTPUT"
+
+# Open with Zathura if available
+if command -v zathura >/dev/null 2>&1; then
+    zathura "$OUTPUT" &
+    ZATHURA_PID=$!
+    echo "Opened $OUTPUT with Zathura"
+else
+    echo "Zathura not found. Install it for automatic PDF viewing."
+    ZATHURA_PID=""
+fi
+
+# Watch for changes and recompile
+echo "Watching for changes to ${WATCH_FILES[*]}..."
+echo "Press Ctrl+C to stop watching."
+
+# Use trap to kill Zathura when script is terminated
+if [ -n "$ZATHURA_PID" ]; then
+    trap "kill $ZATHURA_PID 2>/dev/null; echo -e '\nStopped watching.'" EXIT
+else
+    trap "echo -e '\nStopped watching.'" EXIT
+fi
+
+# Watch loop
+while true; do
+    inotifywait -e modify "${WATCH_FILES[@]}" 2>/dev/null
+    echo "$(date +"%H:%M:%S") - File changed, recompiling..."
+    eval "$COMPILE_CMD"
+    
+    # Show any warnings/errors
+    if [ $? -ne 0 ]; then
+        echo "Compilation had errors. Check your file syntax."
+    else
+        echo "Compilation successful. Waiting for changes..."
+    fi
+done

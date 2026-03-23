@@ -42,8 +42,9 @@ window#waybar {
 }
 
 #clock, #battery, #idle_inhibitor, #cpu, #memory, #network, #pulseaudio, #mpd, #custom-weather, #custom-spotify, #tray, #mode {
-    padding: 0 3px;
-    margin: 0 2px;
+    padding: 0 5px;
+    margin: 0 3px;
+    color: #ffffff;
 }
 
 #clock {
@@ -110,4 +111,14 @@ window#waybar {
 }
 
 #tray {
+}
+
+#custom-updates {
+    color: #ff5555;
+}
+
+#custom-separator {
+    color: #666666;
+    padding: 0 2px;
+    margin: 0;
 }

@@ -1,0 +1,44 @@
+#!/bin/bash
+# groff-build
+# Place this in ~/.local/bin/groff-build
+
+# Check if a file argument was provided
+if [ -z "$1" ]; then
+    echo "Usage: groff-build filename[.ms|.mom]"
+    echo "Example: groff-build chapter1-review.ms"
+    exit 1
+fi
+
+# Get the file extension and base name
+FILENAME="$1"
+EXTENSION="${FILENAME##*.}"
+BASENAME="${FILENAME%.*}"
+
+# Check if file exists
+if [ ! -f "$FILENAME" ]; then
+    echo "Error: File $FILENAME does not exist"
+    exit 1
+fi
+
+# Determine file type and compile accordingly
+OUTPUT="${BASENAME}.pdf"
+if [ "$EXTENSION" = "ms" ]; then
+    echo "Compiling $FILENAME as ms document..."
+    groff -ms "$FILENAME" -T pdf > "$OUTPUT"
+elif [ "$EXTENSION" = "mom" ]; then
+    echo "Compiling $FILENAME as mom document..."
+    groff -mom "$FILENAME" -T pdf > "$OUTPUT"
+else
+    echo "Unsupported file extension: $EXTENSION"
+    echo "Supported extensions: ms, mom"
+    exit 1
+fi
+
+echo "Created $OUTPUT"
+
+# Open with Zathura if available
+if command -v zathura >/dev/null 2>&1; then
+    zathura "$OUTPUT" &
+else
+    echo "Zathura not found. Install it for automatic PDF viewing."
+fi

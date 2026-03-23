@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Use the specific key for all SSH/SCP commands
+SSH_KEY="-i ~/.ssh/windows_build_key"
+
+echo "Syncing code to build server..."
+
+# 1. Ensure the build directory exists (create it if missing)
+if ! (\ssh $SSH_KEY windows-build@windows-build \
+    "powershell -Command 'New-Item -ItemType Directory -Force -Path C:\BuildServer\current'"); then
+    echo "Failed to prepare build directory"
+    exit 1
+fi
+
+# 2. Clean the build directory
+if ! (\ssh $SSH_KEY windows-build@windows-build "del /s /q C:\BuildServer\current\* 2>NUL"); then
+    echo "Failed to clean build directory"
+    exit 1
+fi
+
+# 3. Sync code to the build directory
+if ! (scp $SSH_KEY -r * "windows-build@windows-build:C:\\BuildServer\\current\\"); then
+    echo "Failed to sync code"
+    exit 1
+fi
+
+echo "Starting build..."
+\ssh $SSH_KEY windows-build@windows-build "powershell -File C:\BuildServer\build-local.ps1"
+exit $?

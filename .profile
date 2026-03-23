@@ -1,11 +1,21 @@
 if [ x"$XDG_CURRENT_DESKTOP" = x"Sway" ] ; then
-	QT_QPA_PLATFORM=wayland
-	QT_QPA_PLATFORMTHEME=qt5ct
-	export QT_QPA_PLATFORMTHEME
-	export EDITOR='nvim'
-	export BROWSER='com.brave.Browser.desktop'
-	export TERMINAL='kitty'
+    # Wayland environment variables
+    export XDG_SESSION_TYPE=wayland
+    export GDK_BACKEND=wayland
+    export QT_QPA_PLATFORM=wayland
+    export MOZ_ENABLE_WAYLAND=1
+    export CLUTTER_BACKEND=wayland
+    export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+    export QT_QPA_PLATFORMTHEME=qt5ct
 
+	# Hardware Acceleration
+	export LIBVA_DRIVER_NAME=radeonsi
+
+    # General settings
+    export EDITOR='nvim'
+    export TERMINAL='kitty'
+#    export BROWSER='/usr/bin/flatpak run com.brave/Browser'
+#    export XDG_BROWSER='/usr/bin/flatpak run com.brave/Browser'
 fi
 
 
@@ -42,3 +52,5 @@ export XDG_CACHE_HOME="$HOME/.cache"
 #export WEECHAT_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/weechat"
 #export MBSYNCRC="${XDG_CONFIG_HOME:-$HOME/.config}/mbsync/config"
 #export ELECTRUMDIR="${XDG_DATA_HOME:-$HOME/.local/share}/electrum"
+
+. "$HOME/.local/share/../bin/env"

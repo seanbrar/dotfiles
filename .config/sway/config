@@ -36,9 +36,15 @@ output DP-2 bg /home/sean/Pictures/wallpapers/window.jpg fill
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
-output DP-2 resolution 1920x1080 position 0,0
-output DP-1 resolution 3440x1440 position 1920,0
-output HDMI-A-1 resolution 1920x1080 position 5360,0
+#output HDMI-A-1 resolution 1920x1080 position 0,0
+#output DP-1 resolution 3440x1440 position 1920,0
+#output DP-2 resolution 1920x1080 position 5360,0
+
+# Updated config for 4K monitors with 2x scaling
+
+output HDMI-A-1 resolution 3840x2160 position 0,0 scale 2
+output DP-1 resolution 3440x1440 position 1920,0 scale 1
+output DP-2 resolution 3840x2160 position 5360,0 scale 2
 
 # Font
 font pango:Inter 9
@@ -231,6 +237,9 @@ include /etc/sway/config.d/*
 #
 # Custom Keybindings:
 #
+    # Reset Razer Naga Hex V2 when mouse movement freezes (clicks/scroll still work)
+    bindsym $mod+F12 exec ~/.scripts/mouse-reset.sh
+
     bindsym Ctrl+6 exec pactl set-sink-volume @DEFAULT_SINK@ -5%
     bindsym Ctrl+7 exec pactl set-sink-volume @DEFAULT_SINK@ +5%
     bindsym Mod1+space exec mpc toggle
@@ -259,6 +268,7 @@ include /etc/sway/config.d/*
 #    exec heroic
 #    exec 'copyq'
     exec dunst
+	exec udiskie --tray
 
 #
 # Hide mouse after 100 [mili]seconds (lol) of inactivity (minimum is 100)
@@ -288,9 +298,26 @@ include /etc/sway/config.d/*
 #    for_window [class="Minecraft *"] floating enable
 #    for_window [class="Minecraft Launcher"] floating enable
     for_window [class="explorer.exe"] floating enable
-    for_window [class="steam_app_386360"] floating enable # Smite
+#    for_window [class="steam_app_386360"] floating enable # Smite
+
+	# All Steam games
+	for_window [class="^steam_app_.*"] floating enable
+	# Unity
+	for_window [instance="Unity" class="Unity"] floating enable
+	for_window [instance="unityhub" class="unityhub"] floating enable
+
+	for_window [class="shticker-book-rewritten"] floating enable
+	for_window [class="Toontown Rewritten"] floating enable
 
 #
 # Assign Workspaces
 #
     assign [class="explorer.exe"] workspace 1
+
+#
+# Custom environmental variables
+#
+
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+exec /usr/bin/gnome-keyring-daemon --start --components=secrets

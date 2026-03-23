@@ -1,0 +1,164 @@
+#!/bin/bash
+# groff-new
+# Place this in ~/.local/bin/groff-new
+
+# Define Groff main directory
+GROFF_HOME="$HOME/Documents/Groff"
+
+# Check arguments
+if [ "$#" -lt 2 ]; then
+    echo "Usage: groff-new project_name [ms|mom] [category]"
+    echo "Example: groff-new chapter1-review ms coursework"
+    echo "         groff-new business-letter mom personal"
+    exit 1
+fi
+
+PROJECT_NAME="$1"
+TYPE="$2"
+CATEGORY="${3:-misc}"  # Default to "misc" if no category provided
+YEAR=$(date +%Y)
+
+# Validate type
+if [ "$TYPE" != "ms" ] && [ "$TYPE" != "mom" ]; then
+    echo "Error: Type must be 'ms' or 'mom'"
+    exit 1
+fi
+
+# Create project path
+PROJECT_PATH="$GROFF_HOME/projects/$YEAR/$CATEGORY/$TYPE/$PROJECT_NAME"
+
+# Create directory structure
+mkdir -p "$PROJECT_PATH"
+
+# Check for templates directory
+TEMPLATES_DIR="$GROFF_HOME/templates"
+if [ ! -d "$TEMPLATES_DIR" ]; then
+    echo "Warning: Templates directory not found at $TEMPLATES_DIR"
+    echo "Creating minimal templates..."
+    mkdir -p "$TEMPLATES_DIR/ms" "$TEMPLATES_DIR/mom"
+    
+    # Create minimal ms templates if they don't exist
+    if [ ! -f "$TEMPLATES_DIR/ms/format" ]; then
+        cat > "$TEMPLATES_DIR/ms/format" << EOF
+.nr PS 12
+.ds CH
+.device papersize=8.5i,11i
+.nr LL 6.5i
+.nr HM 0.8i
+.nr FM 0.8i
+.nr PO 1.0i
+.nr VS 14p
+EOF
+    fi
+    
+    if [ ! -f "$TEMPLATES_DIR/ms/macros" ]; then
+        cat > "$TEMPLATES_DIR/ms/macros" << EOF
+.de BL
+.IP \(bu 2
+..
+.de TT
+.ce 1
+..
+.de NL
+.IP \\$1. 3
+..
+EOF
+    fi
+    
+    # Create minimal mom template if it doesn't exist
+    if [ ! -f "$TEMPLATES_DIR/mom/mom-default" ]; then
+        cat > "$TEMPLATES_DIR/mom/mom-default" << EOF
+.PRINTSTYLE TYPESET
+.PAPER LETTER
+.FAMILY T
+.PT_SIZE 12
+.FULLWIDTH
+EOF
+    fi
+fi
+
+# Copy templates to project
+if [ "$TYPE" = "ms" ]; then
+    # Copy MS templates
+    cp "$TEMPLATES_DIR/ms/format" "$PROJECT_PATH/"
+    cp "$TEMPLATES_DIR/ms/macros" "$PROJECT_PATH/"
+    
+    # Create starter document
+    cat > "$PROJECT_PATH/$PROJECT_NAME.ms" << EOF
+.so format
+.so macros
+.ds date $(date +"%B %d, %Y")
+.ds RH \*[date]
+.ds LF $PROJECT_NAME
+.ds RF Page \En[PN]
+
+.TL
+${PROJECT_NAME^}
+
+.LP
+Your content starts here.
+EOF
+else
+    # Copy MOM templates
+    if [ -f "$TEMPLATES_DIR/mom/mom-default" ]; then
+        cp "$TEMPLATES_DIR/mom/mom-default" "$PROJECT_PATH/format"
+    fi
+    
+    # Create starter document
+    cat > "$PROJECT_PATH/$PROJECT_NAME.mom" << EOF
+.INCLUDE format
+.TITLE "${PROJECT_NAME^}"
+.AUTHOR "$(whoami)"
+.DATE
+.PRINTSTYLE TYPESET
+.START
+Your content starts here.
+EOF
+fi
+
+# Create README
+cat > "$PROJECT_PATH/README.md" << EOF
+# ${PROJECT_NAME^}
+
+- **Created**: $(date +"%B %d, %Y")
+- **Type**: $TYPE
+- **Category**: $CATEGORY
+
+## Working with this project
+
+To compile and view:
+\`\`\`bash
+cd $PROJECT_PATH
+groff-watch $PROJECT_NAME.$TYPE
+\`\`\`
+
+## Notes
+
+
+
+EOF
+
+echo "Project created at: $PROJECT_PATH"
+echo "To start working on your project:"
+echo "cd $PROJECT_PATH"
+echo "groff-watch $PROJECT_NAME.$TYPE"
+
+# Ask if user wants to open the project now
+read -p "Open the project now? (y/n): " OPEN_NOW
+if [[ $OPEN_NOW =~ ^[Yy]$ ]]; then
+    cd "$PROJECT_PATH"
+    # Open editor if EDITOR environment variable is set
+    if [ -n "$EDITOR" ]; then
+        $EDITOR "$PROJECT_NAME.$TYPE" &
+    else
+        # Try to find a suitable editor
+        for editor in code vim nano gedit; do
+            if command -v $editor >/dev/null 2>&1; then
+                $editor "$PROJECT_NAME.$TYPE" &
+                break
+            fi
+        done
+    fi
+    # Start watching
+    groff-watch "$PROJECT_NAME.$TYPE"
+fi

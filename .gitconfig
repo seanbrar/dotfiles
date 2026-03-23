@@ -1,0 +1,19 @@
+[user]
+	email = contact@seanbrar.com
+	name = Sean Brar
+	signingkey = /home/sean/.ssh/id_ed25519.pub
+[commit]
+	gpgsign = true
+[gpg]
+	format = ssh
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[merge]
+	tool = vscode
+[mergetool "vscode"]
+	cmd = code --wait --merge $REMOTE $LOCAL $BASE $MERGED
+[safe]
+	directory = /home/sean/Documents/GCC Files 2025/course_files_export/MinusMinusV4Shell/MinusMinusV4Shell/MinusMinusV4Shell
